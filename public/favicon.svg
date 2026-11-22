@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      :root {
+        --bg-c: #3B1519;
+        --fg-c: #FAF8F4;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-c: #E4E0D8;
+          --fg-c: #121212;
+        }
+      }
+    </style>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="var(--bg-c)" />
+  <!-- Monogram MA: Architectural, minimalist strokes -->
+  <path d="M18 42V22L26 33L34 22V42" fill="none" stroke="var(--fg-c)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M34 42L41 22L48 42" fill="none" stroke="var(--fg-c)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M37.5 35H44.5" fill="none" stroke="var(--fg-c)" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+

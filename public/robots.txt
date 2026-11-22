@@ -1,0 +1,26 @@
+# Modern Robots.txt for Search Engines and AI Agents
+User-agent: *
+Allow: /
+
+# Dedicated AI Search and Indexing Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap Index
+Sitemap: https://react-portfolio-almotasem.vercel.app/sitemap.xml
+

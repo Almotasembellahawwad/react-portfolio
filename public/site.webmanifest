@@ -1,0 +1,16 @@
+{
+  "name": "Al-Moatasem Awwad | Portfolio",
+  "short_name": "Al-Moatasem",
+  "description": "Portfolio of Al-Moatasem Awwad, Front-end Developer & AI Engineering Student in Badr City, Egypt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
