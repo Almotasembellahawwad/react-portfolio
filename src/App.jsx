@@ -23,10 +23,10 @@ function Layout(props) {
     if (pathname === '/') {
       pageTitle = lang === 'ar'
         ? 'المعتصم عوّاد | مطوّر واجهات أمامية وهندسة الذكاء الاصطناعي'
-        : 'Al-Moatasem Awwad | Front-end Developer & AI Engineering Student'
+        : 'Al-Moatasem Awwad | Creative Technologist & Product Engineer'
       pageDesc = lang === 'ar'
-        ? 'الموقع الرسمي للمهندس المعتصم بالله عوّاد. مطوّر واجهات أمامية وباحث ذكاء اصطناعي في مدينة بدر، مصر. استكشف المشاريع البرمجية وبنية React التفاعلية.'
-        : 'Portfolio of Al-Moatasem Awwad, independent product engineer and AI engineering student in Badr City, Egypt. Specializing in React, Next.js, TypeScript, and AI systems.'
+        ? 'معرض الأعمال الهندسية للمعتصم بالله عوّاد. تطوير منتجات برمجية، واجهات تفاعلية ثلاثية الأبعاد، وأنظمة ذكاء اصطناعي متقدمة.'
+        : 'Crafting high-performance digital products, interactive 3D web experiences, and intelligent AI systems. Explore curated engineering case studies and technical experiments by Al-Moatasem Awwad.'
     } else if (pathname === '/about') {
       pageTitle = `${t.about} | ${lang === 'ar' ? 'المعتصم عوّاد' : 'Al-Moatasem Awwad'}`
       pageDesc = lang === 'ar' ? t.stmt : 'Background, technical discipline, and engineering philosophy of Al-Moatasem Awwad.'
