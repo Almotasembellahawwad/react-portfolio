@@ -4,12 +4,68 @@ import { Routes, Route, Outlet, useLocation, useNavigate } from 'react-router-do
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Home, AboutPage, ProjectsPage, ProjectPage, ContactPage, NotFound } from './pages'
-import { Lang, dict } from './i18n'
+import { Lang, dict, useT } from './i18n'
+import { projects } from './data'
 
 function Layout(props) {
   const { pathname } = useLocation()
-  useLayoutEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [pathname])
-  return (<><div className="progress" aria-hidden="true" /><Header {...props} /><Outlet /><Footer /></>)
+  const { lang, t } = useT()
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+
+  // Synchronize document title and meta description dynamically based on route and language
+  useEffect(() => {
+    let pageTitle = ''
+    let pageDesc = ''
+
+    if (pathname === '/') {
+      pageTitle = lang === 'ar'
+        ? 'المعتصم عوّاد | مطوّر واجهات أمامية وهندسة الذكاء الاصطناعي'
+        : 'Al-Moatasem Awwad | Front-end Developer & AI Engineering Student'
+      pageDesc = lang === 'ar'
+        ? 'الموقع الرسمي للمهندس المعتصم بالله عوّاد. مطوّر واجهات أمامية وباحث ذكاء اصطناعي في مدينة بدر، مصر. استكشف المشاريع البرمجية وبنية React التفاعلية.'
+        : 'Portfolio of Al-Moatasem Awwad, independent product engineer and AI engineering student in Badr City, Egypt. Specializing in React, Next.js, TypeScript, and AI systems.'
+    } else if (pathname === '/about') {
+      pageTitle = `${t.about} | ${lang === 'ar' ? 'المعتصم عوّاد' : 'Al-Moatasem Awwad'}`
+      pageDesc = lang === 'ar' ? t.stmt : 'Background, technical discipline, and engineering philosophy of Al-Moatasem Awwad.'
+    } else if (pathname === '/projects') {
+      pageTitle = `${t.projects} | ${lang === 'ar' ? 'المعتصم عوّاد' : 'Al-Moatasem Awwad'}`
+      pageDesc = lang === 'ar'
+        ? 'سجل المشاريع البرمجية والأنظمة الرقمية التي بناها المعتصم عوّاد.'
+        : 'Selected software projects, case studies, and engineering implementations by Al-Moatasem Awwad.'
+    } else if (pathname.startsWith('/projects/')) {
+      const slug = pathname.replace('/projects/', '')
+      const p = projects.find(x => x.slug === slug)
+      if (p) {
+        pageTitle = `${p.name} | ${lang === 'ar' ? 'المعتصم عوّاد' : 'Al-Moatasem Awwad'}`
+        pageDesc = p[lang]?.line || p[lang]?.problem || ''
+      }
+    } else if (pathname === '/contact') {
+      pageTitle = `${t.contact} | ${lang === 'ar' ? 'المعتصم عوّاد' : 'Al-Moatasem Awwad'}`
+      pageDesc = lang === 'ar'
+        ? 'تواصل مع المعتصم عوّاد لمناقشة فرص العمل، المشاريع البرمجية، أو الاستشارات التقنية.'
+        : 'Get in touch with Al-Moatasem Awwad for engineering roles, project inquiries, or technical collaborations.'
+    }
+
+    if (pageTitle) document.title = pageTitle
+    if (pageDesc) {
+      const descEl = document.querySelector('meta[name="description"]')
+      if (descEl) descEl.setAttribute('content', pageDesc)
+      const ogDescEl = document.querySelector('meta[property="og:description"]')
+      if (ogDescEl) ogDescEl.setAttribute('content', pageDesc)
+    }
+  }, [pathname, lang, t])
+
+  return (
+    <>
+      <div className="progress" aria-hidden="true" />
+      <Header {...props} />
+      <Outlet />
+      <Footer />
+    </>
+  )
 }
 
 export default function App() {
